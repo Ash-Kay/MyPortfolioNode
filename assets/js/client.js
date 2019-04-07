@@ -25,7 +25,45 @@ typewriter.typeString('Hello World!')
     .start();
 
 //Add skill
-var add = document.getElementsByClassName("add")[0];
-add.addEventListener('click', ()=>{
-    console.log("Clicked");
+// var add = document.getElementsByClassName("add")[0];
+// add.addEventListener('click', ()=>{
+//     console.log("Clicked");
+// });
+
+$( ".addSkill" ).click(()=>{    
+    console.log("addSkillClick");
+    $( "form.newbar-container" ).toggleClass("hidden");
 });
+
+$( ".editSkill" ).click(()=>{
+    console.log("editSkill");
+});
+
+$( ".removeSkill" ).click(()=>{
+    console.log("removeSkill");
+    var id = $(this).attr("alt");
+    $.ajax({
+        type: "POST",
+        url: "/?_method=DELETE",
+        data: id
+      });
+});
+
+$( "form.newbar-container" ).submit(function( event ) {
+    $(this).toggleClass("hidden");
+});
+
+// $(document).on('click', 'input[type="submit"]', function() {    
+//     var inputs =$(this).siblings('input[type="text"],input[type="number"]');
+
+    
+// });
+
+// $(document).on('submit', 'form', function() {
+//     console.log( $( this ).serializeArray() );
+// });
+
+// $( "form" ).submit(function( event ) {
+//     console.log( $( this ).serializeArray() );
+// });
+

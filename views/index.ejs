@@ -26,7 +26,7 @@
         </div>
 
         <div class="skills" id="skills">
-            <% data.skills.forEach((ele)=>{ %>
+            <% allSkills.forEach((ele)=>{ %>
                 <div class="bar-container">
                     <h3 class="bar-text"> <%= ele.skillName %> </h3>
                     <div class="bar">
@@ -34,13 +34,22 @@
                         </div>
                     </div>          
                     <div class="control">
-                        <img src="/images/icons8-pencil-100.png" alt="" width="20px" style="">   
-                        <img src="/images/icons8-cancel-100.png" alt="" width="20px" style="">   
+                        <img src="/images/icons8-pencil-100.png" class="editSkill" alt="<%= ele._id %>" width="20px">   
+                        <img src="/images/icons8-cancel-100.png" class="removeSkill" alt="<%= ele._id %>" width="20px">   
                     </div>         
                 </div>
             <% }); %>
-            <img src="/images/icons8-plus-100.png" class="add" alt="" width="25px" style="margin: auto">
+
+            <!-- POST -->
+            <form action = "/" method = "POST" class="newbar-container hidden">
+                <input type="text" name="skillName" placeholder="skill name">   <br>
+                <input type="number" name="skillPercent" placeholder="skill percent">  <br>
+                <input type="submit" name="ADD" >
+            </form>
+
+            <img src="/images/icons8-plus-100.png" class="addSkill" alt="addSkill" width="25px" style="margin: auto">
         </div>
+
         
         <footer>
             <ul>
