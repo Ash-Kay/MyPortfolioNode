@@ -7,7 +7,7 @@
                 <ul>
                     <li><a href="#portfolio">Portfolio</a></li>
                     <li><a href="#skills">Skills</a></li>
-                    <li><a href="#">Blog</a></li>
+                    <li><a href="#projects">Projects</a></li>
                     <li><a href="#">Contact</a></li>
                 </ul>
             </nav>
@@ -18,30 +18,43 @@
                 <img src="images/face2.png" alt="userimage">
                 <div class="hero-content">
                     <h1 id="typewriter">Passionate Android Game Developer</h1>
-                    <p>College student with intrest in computer science</p>
-                    <a href="#" class="hero-cv">CV</a>
+                    <p id="about">College student with intrest in computer science</p>
+                    <a href="cv/resume-Ashish.pdf" class="hero-cv">CV</a>
                 </div>
-            </section>
+            </section>  
+            <div class="control">
+                <button id="edit-hero-btn" class="btn">EDIT</button>
+            </div>
 
+            <div id="hero-edit" class="hidden">                    
+                <form action = "/" method = "POST" class="">
+                    <input id="edit-typewriter" type="textarea"  name="typewriter" placeholder="Typewriter text name">   <br>
+                    <textarea id="edit-about" name="about" rows="4" placeholder="about you"></textarea>  <br>
+                    <input type="text" name="linkcv" placeholder="cv link">   <br>
+                    <input id="edit-profile-link" type="text" name="profilepic" placeholder="proflic image link">   <br>                                         
+                    <input type="button" class="btn" name="ADD" value="update" >
+                </form>
+            </div>
         </div>
 
         <div class="skills" id="skills">
-            <% allSkills.forEach((ele)=>{ %>
+            <% dataList.skills.forEach((ele)=>{ %>
                 <div class="bar-container">
                     <h3 class="bar-text"> <%= ele.skillName %> </h3>
                     <div class="bar">
                         <div class="bar-inner" style="height:10px;width:<%=ele.percent%>%">
                         </div>
                     </div>          
-                    <div class="control">
-                        <img src="/images/icons8-pencil-100.png" class="editSkill" alt="<%= ele._id %>" width="20px">   
-                        <img src="/images/icons8-cancel-100.png" class="removeSkill" alt="<%= ele._id %>" width="20px">   
+                    <div class="control">     
+                        <form id="removeForm" action = "/skill/<%=ele._id%>?_method=DELETE" method = "POST">
+                            <input type="submit" value="X">
+                        </form>
                     </div>         
                 </div>
             <% }); %>
 
             <!-- POST -->
-            <form action = "/" method = "POST" class="newbar-container hidden">
+            <form action = "/newSkill" method = "POST" class="newbar-container hidden">
                 <input type="text" name="skillName" placeholder="skill name">   <br>
                 <input type="number" name="skillPercent" placeholder="skill percent">  <br>
                 <input type="submit" name="ADD" >
@@ -50,7 +63,32 @@
             <img src="/images/icons8-plus-100.png" class="addSkill" alt="addSkill" width="25px" style="margin: auto">
         </div>
 
-        
+        <div class="projects" id="projects">
+            <% dataList.projects.forEach((ele)=>{ %>
+            <div class="card">
+                <img src="<%=ele.projectImage%>" alt="Avatar">
+                <div class="card-container">
+                    <h4><b><%=ele.projectName%></b></h4> 
+                    <p><%=ele.projectSub%></p> 
+                </div>
+                <div class="control">
+                    <form id="removeForm" action = "/project/<%=ele._id%>?_method=DELETE" method = "POST">
+                        <input type="submit" value="X">
+                    </form>
+                </div> 
+            </div>
+            <% }); %>
+
+            <form action = "/newproject" method = "POST" class="newporject-container hidden">
+                <input type="text" name="projectImage" placeholder="project image url">   <br>
+                <input type="text" name="projectName" placeholder="project name">   <br>                
+                <input type="text" name="projectSub" placeholder="project subtitle">   <br>                
+                <input type="submit" name="ADD" >
+            </form>
+
+            <img src="/images/icons8-plus-100.png" class="addProjects" alt="addProjects" width="25px" style="margin: auto">
+        </div>
+
         <footer>
             <ul>
                 <li><a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="100" height="100">

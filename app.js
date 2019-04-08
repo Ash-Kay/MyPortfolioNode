@@ -14,39 +14,34 @@ var skillsSchema = new mongoose.Schema({
     skillName : String,
     percent : Number
 });
-
 var SkillsModel = mongoose.model("skill", skillsSchema);
 
-// SkillsModel.create({
-//     skillName: "C++", percent: 90
-// },(err, skill)=>{
-//     if (err)
-//         console.log(err);
-//     else
-//         console.log(skill);
-// });
+var projectsSchema = new mongoose.Schema({
+    projectName : String,
+    projectImage : String,
+    projectSub : String
+});
+var ProjectsModel = mongoose.model("project", projectsSchema);
 
+app.get("/", (req, res)=>{
+    var dataList = [];
 
-// var data = {
-//     skills : [
-//     { skillName: "C++", percent: 90 },
-//     { skillName: "Java", percent: 70 },
-//     { skillName: "C#", percent: 50 },
-//     { skillName: "JavaScript", percent: 20 },
-//     { skillName: "JavaScript", percent: 80 }
-//     ]
-// }
-
-app.get("/", (req, res)=>{  
     SkillsModel.find({},(err, allSkills)=>{
         if(err)
             console.log(err);
         else
-            res.render("index", {allSkills:allSkills});
-    }); 
+            dataList.skills = allSkills;
+            ProjectsModel.find({},(err, allProjects)=>{
+                if(err)
+                    console.log(err);
+                else
+                    dataList.projects = allProjects;
+                    res.render("index", {dataList:dataList});
+            });
+    });
 });
 
-app.post("/", (req, res)=>{  
+app.post("/newskill", (req, res)=>{  
     var newSkill = {
         skillName:req.body.skillName,
          percent:req.body.skillPercent
@@ -61,13 +56,34 @@ app.post("/", (req, res)=>{
     res.redirect("/");
 });
 
-app.delete("/", (req, res)=>{  
-    console.log(req.body.id);
+app.delete("/skill/:id", (req, res)=>{  
+    SkillsModel.findByIdAndRemove(req.params.id, (err)=>{
+        res.redirect("/");
+    })
+});
+
+app.delete("/project/:id", (req, res)=>{  
+    ProjectsModel.findByIdAndRemove(req.params.id, (err)=>{
+        res.redirect("/");
+    })
+});
+
+app.post("/newproject", (req, res)=>{  
+    var newProject = {
+        projectName:req.body.projectName,
+        projectImage:req.body.projectImage,
+        projectSub:req.body.projectSub
+        }
+    ProjectsModel.create(newProject, (err, addedProject)=>{
+        if(err)
+            console.log(err);
+        else
+            console.log("added new Project");
+    });
+    
+    res.redirect("/");
 });
 
 app.listen(3000, ()=>{
     console.log("===== Server Running =====");
 });
-
-
-

@@ -11,59 +11,59 @@ var typewriter = new Typewriter(app, {
     loop: true
 });
 
+var name = "Ashish";
+
 typewriter.typeString('Hello World!')
     .pauseFor(2500)
     .deleteAll()
-    .typeString('I\'m Ashish')
+    .typeString('I\'m '+name)
     .pauseFor(2500)
-    .deleteChars(9)
-    .typeString(' make Android apps')
-    .deleteChars(12)
-    .typeString('Games')            
+    .deleteChars(7)
+    .typeString(' am Web Developer')          
     .pauseFor(2500)
     .deleteAll()
     .start();
 
-//Add skill
-// var add = document.getElementsByClassName("add")[0];
-// add.addEventListener('click', ()=>{
-//     console.log("Clicked");
-// });
+//  HERO
+
+$( "#edit-hero-btn" ).click(()=>{    
+    console.log("hero edit click");
+    $( "#hero-edit" ).toggleClass("hidden");
+    $( ".hero" ).toggleClass("hidden");
+});
+
+$( "#hero-edit .btn" ).click(()=>{    
+    console.log("hero update click");
+    $( "#hero-edit" ).toggleClass("hidden");
+    $( ".hero" ).toggleClass("hidden");
+
+    $( "#about" ).html( $("#edit-about").val() );
+    $( ".hero img" ).attr("src", $("#edit-profile-link").val());
+
+    if($("#edit-typewriter").val() != ""){
+        name = $("#edit-typewriter").val();
+    }
+    
+});
+
+// SKILL
 
 $( ".addSkill" ).click(()=>{    
     console.log("addSkillClick");
     $( "form.newbar-container" ).toggleClass("hidden");
 });
 
-$( ".editSkill" ).click(()=>{
-    console.log("editSkill");
-});
-
-$( ".removeSkill" ).click(()=>{
-    console.log("removeSkill");
-    var id = $(this).attr("alt");
-    $.ajax({
-        type: "POST",
-        url: "/?_method=DELETE",
-        data: id
-      });
-});
-
 $( "form.newbar-container" ).submit(function( event ) {
     $(this).toggleClass("hidden");
 });
 
-// $(document).on('click', 'input[type="submit"]', function() {    
-//     var inputs =$(this).siblings('input[type="text"],input[type="number"]');
+// PORJECT
 
-    
-// });
+$( ".addProjects" ).click(()=>{    
+    console.log("addProjectClick");
+    $( "form.newporject-container" ).toggleClass("hidden");
+});
 
-// $(document).on('submit', 'form', function() {
-//     console.log( $( this ).serializeArray() );
-// });
-
-// $( "form" ).submit(function( event ) {
-//     console.log( $( this ).serializeArray() );
-// });
-
+$( "form.newporject-container" ).submit(function( event ) {
+    $(this).toggleClass("hidden");
+});

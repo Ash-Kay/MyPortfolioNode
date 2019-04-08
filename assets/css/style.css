@@ -10,12 +10,34 @@ body{
     display: none;
 }
 
+#removeForm input[type=submit]{
+    font-family: Montserrat;
+    font-weight: 700;
+    background: #9b1a0a;
+    text-decoration: none;
+    color: #d3d1d1;
+    border-radius: 40px;
+}
+
+.btn{
+    font-family: Montserrat;
+    font-weight: 700;
+    background: #9b1a0a;
+    text-decoration: none;
+    color: #d3d1d1;
+    border-radius: 40px;
+}
+
 .content{
     grid-area: content;
 }
 
 .skills{
     grid-area: skills;
+}
+
+.projects{
+    grid-area: projects;
 }
 
 .sidebar{
@@ -34,9 +56,9 @@ footer{
     font-size: 1.5em;
     width: 100%;
     display: grid;
-    grid-template-areas: "sidebar" "content" "skills" "footer";
+    grid-template-areas: "sidebar" "content" "skills" "projects" "footer";
     grid-template-columns: 1fr;
-    grid-template-rows: 130px auto auto auto;
+    grid-template-rows: 130px auto auto auto auto;
 }
 
 .content, .sidebar, .footer{
@@ -126,7 +148,8 @@ nav li a:hover{
 .skills{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    grid-template-rows: repeat(2, 100px);
+    /* grid-template-rows: repeat(2, 100px); */
+    margin: 10vh 0;
 }
 
 .bar-text{
@@ -179,9 +202,58 @@ input[type=text], input[type=number]{
     /* margin: 0 auto; */
 }
 
-.newbar-container input[type=submit]{
+input[type=submit]{
     font-family: Montserrat;
     font-weight: 700;
+}
+
+
+/********************************************** 
+                    Project
+ **********************************************/
+
+.projects{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 10px;
+    margin: 10vh 20px;
+}
+
+.newporject-container{
+    padding: 0 20px;
+    text-align: center;
+}
+
+.card {
+    position: relative;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;    
+    background-color: rgb(62, 32, 80);
+    /* overflow: hidden; */
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.card-container {
+    padding: 2px 16px;
+    text-align: center;
+}
+
+.card-container h4{
+    color: #ccc;
+}
+
+.card-container p{
+    color: #ccc;
+    opacity: 0.7;
+}
+
+.card img{
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
 }
 
 /********************************************** 
@@ -218,7 +290,7 @@ footer ul li svg:hover{
 
 @media (min-width:1040px){
     .container{    
-        grid-template-areas: "sidebar content" "sidebar skills" "footer footer";
+        grid-template-areas: "sidebar content" "sidebar skills" "sidebar projects   " "footer footer";
         grid-template-columns: 200px 1fr;
         grid-template-rows: 100vh auto auto;
     }
@@ -249,7 +321,4 @@ footer ul li svg:hover{
         width: 250px;
         float: right;
     }
-
 }
-
-
