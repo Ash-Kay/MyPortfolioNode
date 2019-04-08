@@ -40,6 +40,12 @@ body{
     grid-area: projects;
 }
 
+.contacts{
+    grid-area: contacts;
+    margin: 50px 0;
+    color: #ccc;
+}
+
 .sidebar{
     grid-area: sidebar;
     background: linear-gradient(to right, #9b1a0a 0%, #5a1309 100%);
@@ -56,7 +62,7 @@ footer{
     font-size: 1.5em;
     width: 100%;
     display: grid;
-    grid-template-areas: "sidebar" "content" "skills" "projects" "footer";
+    grid-template-areas: "sidebar" "content" "skills" "projects" "contacts" "footer";
     grid-template-columns: 1fr;
     grid-template-rows: 130px auto auto auto auto;
 }
@@ -139,6 +145,18 @@ nav li a:hover{
 
 #typewriter{
     height: 20vh;
+}
+
+#hero-edit form input{
+    padding: 5px;
+    margin: 5px;
+    width: 70%; 
+}
+
+#hero-edit form textarea{
+    padding: 5px;
+    margin: 5px;
+    width: 70%; 
 }
 
 /********************************************** 
@@ -256,6 +274,26 @@ input[type=submit]{
     object-fit: cover;
 }
 
+
+/********************************************** 
+                    CONTACTS
+ **********************************************/
+
+.contacts form{
+    color: #ccc;
+}
+
+.contacts #E-mail, .contacts textarea{    
+    width: 70%;
+    margin: 5px;
+    padding: 5px;
+    background-color: rgb(132, 126, 165);
+}
+
+.contacts input[type="submit"]{
+    padding: 10px 20px;
+}
+
 /********************************************** 
                     FOOTER
  **********************************************/
@@ -274,13 +312,13 @@ footer ul li{
 }
 
 footer ul li svg{
-    width: 50%;
+    width: 20%;
     fill: rgb(197, 197, 197);
-    transition: 0.2s;
+    transition: 0.5s;
 }
 
 footer ul li svg:hover{
-    width: 60%;
+    width: 40%;
     fill: rgb(224, 224, 224); 
 }
 
@@ -290,7 +328,7 @@ footer ul li svg:hover{
 
 @media (min-width:1040px){
     .container{    
-        grid-template-areas: "sidebar content" "sidebar skills" "sidebar projects   " "footer footer";
+        grid-template-areas: "sidebar content" "sidebar skills" "sidebar projects" "sidebar contacts" "footer footer";
         grid-template-columns: 200px 1fr;
         grid-template-rows: 100vh auto auto;
     }
